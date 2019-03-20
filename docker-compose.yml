@@ -4,6 +4,7 @@ services:
   proxy:
     image:
       nginx:1.15-alpine
+    restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
@@ -18,6 +19,7 @@ services:
   grafana:
     image:
       grafana/grafana:6.0.1
+    restart: unless-stopped
     volumes:
       - /var/lib/grafana:/var/lib/grafana
       - /etc/grafana/grafana.ini:/etc/grafana/grafana.ini:ro
@@ -25,6 +27,7 @@ services:
   influxdb:
     image:
       influxdb:1.7-alpine
+    restart: unless-stopped
     volumes:
       - /var/lib/influxdb:/var/lib/influxdb
       - /etc/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro
